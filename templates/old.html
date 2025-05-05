@@ -1,0 +1,306 @@
+<!-- <!DOCTYPE html>
+<html lang="{{.Language}}">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{.Welcome}}</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      font-family: 'Lato', serif;
+    "
+  >
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        width: 507px;
+        margin: 0 auto;
+      "
+    >
+      <div
+        style="
+          background-color: #0c2841;
+          border: 1px solid #0c2841;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 65px;
+          width: 100%;
+        "
+      >
+        <img
+          src="cid:logo-fbc.svg"
+          alt="Falabella Business Center"
+          style="width: 186px; height: 30px"
+        />
+      </div>
+      <section
+        style="
+          padding: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        "
+      >
+        <div
+          style="
+            color: #0c2841;
+            font-family: 'Lato', serif;
+            font-style: normal;
+            text-align: center;
+            font-size: 32;
+          "
+        >
+          <p style="font-weight: 700">
+            ¡{{.Greeting}}, {{.FirstName}} {{.LastName}}!
+          </p>
+          <p style="font-weight: 400">{{.Welcome}}</p>
+          <p style="font-weight: 700">{{"Falabella Business Center"}}.</p>
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+          "
+        >
+          <img
+            src="cid:welcome.svg"
+            alt="person"
+            style="max-width: 100%; height: auto"
+          />
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            font-family: 'Lato', serif;
+            font-style: normal;
+            padding: 40px 0;
+          "
+        >
+          <p style="font-size: 24px">{{.TemporaryPasswordMessage}}:</p>
+          <p style="font-size: 35px; color: #0c2841; font-weight: 700">
+            {{.TemporaryPassword}}
+          </p>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            padding-bottom: 24px;
+            color: #000;
+          "
+        >
+          <a
+            href="{{.FBCUrl}}"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: #0c2841;
+              color: #ffffff;
+              border-radius: 38px;
+              width: 448px;
+              height: 67px;
+              cursor: pointer;
+              text-decoration: none;
+            "
+          >
+            <span style="font-size: 26px; font-weight: 700"
+              >{{.UpdatePassword}}</span
+            >
+          </a>
+          <p style="font-size: 18px; font-weight: 400">
+            <span style="margin-right: 12px"
+              ><img
+                src="cid:clock-time.svg"
+                alt="clock-time"
+                style="max-width: 100%; height: auto" /></span
+            >{{.LinkExpires}}
+          </p>
+        </div>
+        <hr
+          style="
+            border: none;
+            width: 100%;
+            height: 1px;
+            background-color: #d5d5d5;
+          "
+        />
+        <div
+          style="
+            color: #000;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            font-family: 'Lato', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            width: 500px;
+            padding: 24px 0;
+          "
+        >
+          <p style="font-weight: 600; margin: 0">{{.StepsToUpdatePassword}}</p>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: row;
+              position: relative;
+            "
+          >
+            <div
+              style="
+                background-color: #0b7fad;
+                color: #ffffff;
+                border-radius: 100%;
+                width: 27px;
+                height: 27px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+              "
+            >
+              <span style="margin: 0 auto">{{"1"}}</span>
+            </div>
+            <p
+              style="
+                margin: 0;
+                margin-left: 40px;
+                text-align: justify;
+                width: 480px;
+                font-weight: 400;
+              "
+            >
+              {{.StepsToUpdatePasswordFirst}}
+              <span style="font-weight: 700">"{{.UpdatePassword}}"</span>
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: row;
+              position: relative;
+            "
+          >
+            <div
+              style="
+                background-color: #0b7fad;
+                color: #ffffff;
+                border-radius: 100%;
+                width: 27px;
+                height: 27px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+              "
+            >
+              <span style="margin: 0 auto">{{"2"}}</span>
+            </div>
+            <p
+              style="
+                margin: 0;
+                margin-left: 40px;
+                text-align: justify;
+                width: 480px;
+                font-weight: 400;
+              "
+            >
+              {{.StepsToUpdatePasswordSecond}}
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: row;
+              position: relative;
+            "
+          >
+            <div
+              style="
+                background-color: #0b7fad;
+                color: #ffffff;
+                border-radius: 100%;
+                width: 27px;
+                height: 27px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+              "
+            >
+              <span style="margin: 0 auto">{{"3"}}</span>
+            </div>
+            <p
+              style="
+                margin: 0;
+                margin-left: 40px;
+                text-align: justify;
+                width: 480px;
+                font-weight: 400;
+              "
+            >
+              {{.StepsToUpdatePasswordThird}}
+            </p>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+          "
+        >
+          <img
+            src="cid:fbc-mark.svg"
+            alt="Falabella Business Center"
+            style="max-width: 100%; height: auto"
+          />
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            text-align: center;
+            font-size: 18px;
+            gap: 12px;
+          "
+        >
+          <p style="font-weight: 700">{{.Team}}</p>
+          <p style="font-weight: 500; font-style: italic">*{{.Footer}}.</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html> -->
