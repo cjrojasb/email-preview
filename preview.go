@@ -9,12 +9,11 @@ import (
 )
 
 type EmailMessages struct {
-	FirstName         string
-	LastName          string
-	TemporaryPassword string
-	FBCUrl            string
-	FrontAppUrl       string
-	// TODO
+	FirstName                   string
+	LastName                    string
+	TemporaryPassword           string
+	FBCUrl                      string
+	FrontAppUrl                 string
 	Language                    string
 	Greeting                    string
 	Welcome                     string
@@ -40,6 +39,19 @@ type EmailMessages struct {
 	StepsToEnterFirst   string
 	StepsToEnterSecond  string
 	FalabellaAzureAD    string
+	// bulk messages
+	BulkCreateInfoSubject         string
+	BulkTitle                     string
+	BulkHeader                    string
+	BulkHeaderDetail              string
+	BulkBody                      string
+	Greetings                     string
+	BulkCreateSuccessSubject      string
+	BulkCreateSuccessTitle        string
+	BulkCreateSuccessHeader       string
+	BulkCreateSuccessHeaderDetail string
+	BulkCreateSuccessBody         string
+	BulkCreateSuccessFooter       string
 }
 
 func main() {
@@ -51,7 +63,7 @@ func main() {
 	FBCUrl := os.Getenv("FBC_URL")
 	FrontAppUrl := os.Getenv("FRONT_APP_URL")
 
-	t, err := template.ParseFiles("./templates/email-template.html")
+	t, err := template.ParseFiles("./templates/email-template-bulk-info.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -94,6 +106,19 @@ func main() {
 		StepsToEnterFirst:   "Al ser Colaborador del Grupo Falabella, accede directamente desde",
 		StepsToEnterSecond:  "Ahora puedes acceder a los Módulos asignados en el Falabella Business Center",
 		FalabellaAzureAD:    "Falabella Azure AD",
+		// bulk messages
+		BulkCreateInfoSubject:         "Información importante sobre la solicitud de creación de usuarios! ⚠️",
+		BulkTitle:                     "Información sobre tu solicitud de creación de usuarios",
+		BulkHeader:                    "Te informamos que al cargar el archivo",
+		BulkHeaderDetail:              "no fue posible crear algunos de los usuarios debido a ciertos errores en los datos.",
+		BulkBody:                      "Para ayudarte, adjuntamos un documento con el detalle de los usuarios que no se pudieron crear y los motivos, de manera que puedas revisarlo, corregir lo necesario y volver a cargarlo en la plataforma Falabella Business Center.",
+		Greetings:                     "Saludos cordiales",
+		BulkCreateSuccessSubject:      "Se han creado con éxito los usuarios solicitados! 🚀",
+		BulkCreateSuccessTitle:        "Información sobre tu solicitud de creación de usuarios",
+		BulkCreateSuccessHeader:       "Te informamos que al cargar el archivo",
+		BulkCreateSuccessHeaderDetail: "no fue posible crear algunos de los usuarios debido a ciertos errores en los datos.",
+		BulkCreateSuccessBody:         "Para ayudarte, adjuntamos un documento con el detalle de los usuarios que no se pudieron crear y los motivos, de manera que puedas revisarlo, corregir lo necesario y volver a cargarlo en la plataforma Falabella Business Center.",
+		BulkCreateSuccessFooter:       "Este es un mensaje automático. Por favor, no lo responda",
 	})
 	if err != nil {
 		log.Fatal(err)
