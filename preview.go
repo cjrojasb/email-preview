@@ -53,6 +53,14 @@ type EmailMessages struct {
 	BulkCreateSuccessHeaderDetailSystem string
 	BulkCreateSuccessBody               string
 	BulkCreateSuccessFooter             string
+	// bulk error messages
+	BulkCreateErrorSubject                             string
+	BulkCreateErrorTitle                               string
+	BulkCreateErrorHeader                              string
+	BulkCreateErrorUsersCreatedSuccessfully            string
+	BulkCreateErrorUsersCreatedSuccessfullyDescription string
+	BulkCreateErrorUsersNotCreated                     string
+	BulkCreateErrorUsersNotCreatedDescription          string
 	// bulk variables values
 	Filename   string
 	TotalUsers int
@@ -67,7 +75,7 @@ func main() {
 	FBCUrl := os.Getenv("FBC_URL")
 	FrontAppUrl := os.Getenv("FRONT_APP_URL")
 
-	t, err := template.ParseFiles("./templates/bulk-create-success.html")
+	t, err := template.ParseFiles("./templates/bulk-create-error.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -111,21 +119,28 @@ func main() {
 		StepsToEnterSecond:  "Ahora puedes acceder a los Módulos asignados en el Falabella Business Center",
 		FalabellaAzureAD:    "Falabella Azure AD",
 		// bulk messages
-		BulkCreateInfoSubject:               "Información importante sobre la solicitud de creación de usuarios! ⚠️",
-		BulkTitle:                           "Información sobre tu solicitud de creación de usuarios",
-		BulkHeader:                          "Te informamos que al cargar el archivo",
-		BulkHeaderDetail:                    "no fue posible crear algunos de los usuarios debido a ciertos errores en los datos.",
-		BulkBody:                            "Para ayudarte, adjuntamos un documento con el detalle de los usuarios que no se pudieron crear y los motivos, de manera que puedas revisarlo, corregir lo necesario y volver a cargarlo en la plataforma Falabella Business Center.",
-		Greetings:                           "Saludos cordiales",
-		BulkCreateSuccessSubject:            "Se han creado con éxito los usuarios solicitados! 🚀",
-		BulkCreateSuccessTitle:              "Información sobre tu solicitud de creación de usuarios",
-		BulkCreateSuccessHeader:             "Te informamos que al cargar el archivo",
-		BulkCreateSuccessHeaderDetail:       "se crearon correctamente los",
-		BulkCreateSuccessHeaderDetailSystem: "usuarios en el sistema.",
-		BulkCreateSuccessBody:               "Puedes revisar y gestionar esta información directamente en la plataforma Falabella Business Center, sección Roles y Perfiles.",
-		BulkCreateSuccessFooter:             "Si tienes alguna duda o necesitas apoyo adicional, no dudes en escribirnos.",
-		Filename:                            "create_external_users_2023.csv",
-		TotalUsers:                          100,
+		BulkCreateInfoSubject:                   "Información importante sobre la solicitud de creación de usuarios! ⚠️",
+		BulkTitle:                               "Información sobre tu solicitud de creación de usuarios",
+		BulkHeader:                              "Te informamos que al cargar el archivo",
+		BulkHeaderDetail:                        "no fue posible crear algunos de los usuarios debido a ciertos errores en los datos.",
+		BulkBody:                                "Para ayudarte, adjuntamos un documento con el detalle de los usuarios que no se pudieron crear y los motivos, de manera que puedas revisarlo, corregir lo necesario y volver a cargarlo en la plataforma Falabella Business Center.",
+		Greetings:                               "Saludos cordiales",
+		BulkCreateSuccessSubject:                "Se han creado con éxito los usuarios solicitados! 🚀",
+		BulkCreateSuccessTitle:                  "Información sobre tu solicitud de creación de usuarios",
+		BulkCreateSuccessHeader:                 "Te informamos que al cargar el archivo",
+		BulkCreateSuccessHeaderDetail:           "se crearon correctamente los",
+		BulkCreateSuccessHeaderDetailSystem:     "usuarios en el sistema.",
+		BulkCreateSuccessBody:                   "Puedes revisar y gestionar esta información directamente en la plataforma Falabella Business Center, sección Roles y Perfiles.",
+		BulkCreateSuccessFooter:                 "Si tienes alguna duda o necesitas apoyo adicional, no dudes en escribirnos.",
+		BulkCreateErrorSubject:                  "Estado de creación de usuarios en la plataformas FBC! 🚀",
+		BulkCreateErrorTitle:                    "Tenemos los resultados de tu solicitud de creación de usuarios.",
+		BulkCreateErrorHeader:                   "A continuación, te compartimos dos archivos con el  detalle del resultado:",
+		BulkCreateErrorUsersCreatedSuccessfully: "✅ Usuarios creados correctamente:",
+		BulkCreateErrorUsersCreatedSuccessfullyDescription: "listado de los usuarios que fueron ingresados exitosamente al sistema.",
+		BulkCreateErrorUsersNotCreated:                     "⚠️ Usuarios no creados:",
+		BulkCreateErrorUsersNotCreatedDescription:          "listado de los usuarios que no  pudieron ser creados, junto con los errores detectados. Te pedimos por favor revisar estos casos, corregirlos y volver a enviar el archivo actualizado.",
+		Filename:   "create_external_users_2023.csv",
+		TotalUsers: 100,
 	})
 	if err != nil {
 		log.Fatal(err)
