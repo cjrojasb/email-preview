@@ -39,13 +39,15 @@ type EmailMessages struct {
 	StepsToEnterFirst   string
 	StepsToEnterSecond  string
 	FalabellaAzureAD    string
-	// bulk messages
-	BulkCreateInfoSubject               string
-	BulkTitle                           string
-	BulkHeader                          string
-	BulkHeaderDetail                    string
-	BulkBody                            string
-	Greetings                           string
+	// bulk create info
+	BulkCreateInfoSubject        string
+	BulkCreateInfoSubjectOfUsers string
+	BulkCreateInfoTitle          string
+	BulkCreateInfoHeader         string
+	BulkCreateInfoHeaderID       string
+	BulkCreateInfoHeaderDetail   string
+	BulkCreateInfoBody           string
+	// bulk create success
 	BulkCreateSuccessSubject            string
 	BulkCreateSuccessTitle              string
 	BulkCreateSuccessHeader             string
@@ -53,7 +55,7 @@ type EmailMessages struct {
 	BulkCreateSuccessHeaderDetailSystem string
 	BulkCreateSuccessBody               string
 	BulkCreateSuccessFooter             string
-	// bulk error messages
+	// bulk create error
 	BulkCreateErrorSubject                             string
 	BulkCreateErrorTitle                               string
 	BulkCreateErrorHeader                              string
@@ -61,9 +63,11 @@ type EmailMessages struct {
 	BulkCreateErrorUsersCreatedSuccessfullyDescription string
 	BulkCreateErrorUsersNotCreated                     string
 	BulkCreateErrorUsersNotCreatedDescription          string
+	Greetings                                          string
 	// bulk variables values
 	Filename   string
 	TotalUsers int
+	RequestID  string
 }
 
 func main() {
@@ -75,7 +79,7 @@ func main() {
 	FBCUrl := os.Getenv("FBC_URL")
 	FrontAppUrl := os.Getenv("FRONT_APP_URL")
 
-	t, err := template.ParseFiles("./templates/bulk-create-error.html")
+	t, err := template.ParseFiles("./templates/bulk-create-info.html")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -119,28 +123,31 @@ func main() {
 		StepsToEnterSecond:  "Ahora puedes acceder a los Módulos asignados en el Falabella Business Center",
 		FalabellaAzureAD:    "Falabella Azure AD",
 		// bulk messages
-		BulkCreateInfoSubject:                   "Información importante sobre la solicitud de creación de usuarios! ⚠️",
-		BulkTitle:                               "Información sobre tu solicitud de creación de usuarios",
-		BulkHeader:                              "Te informamos que al cargar el archivo",
-		BulkHeaderDetail:                        "no fue posible crear algunos de los usuarios debido a ciertos errores en los datos.",
-		BulkBody:                                "Para ayudarte, adjuntamos un documento con el detalle de los usuarios que no se pudieron crear y los motivos, de manera que puedas revisarlo, corregir lo necesario y volver a cargarlo en la plataforma Falabella Business Center.",
-		Greetings:                               "Saludos cordiales",
-		BulkCreateSuccessSubject:                "Se han creado con éxito los usuarios solicitados! 🚀",
-		BulkCreateSuccessTitle:                  "Información sobre tu solicitud de creación de usuarios",
-		BulkCreateSuccessHeader:                 "Te informamos que al cargar el archivo",
-		BulkCreateSuccessHeaderDetail:           "se crearon correctamente los",
-		BulkCreateSuccessHeaderDetailSystem:     "usuarios en el sistema.",
-		BulkCreateSuccessBody:                   "Puedes revisar y gestionar esta información directamente en la plataforma Falabella Business Center, sección Roles y Perfiles.",
-		BulkCreateSuccessFooter:                 "Si tienes alguna duda o necesitas apoyo adicional, no dudes en escribirnos.",
-		BulkCreateErrorSubject:                  "Estado de creación de usuarios en la plataformas FBC! 🚀",
-		BulkCreateErrorTitle:                    "Tenemos los resultados de tu solicitud de creación de usuarios.",
-		BulkCreateErrorHeader:                   "A continuación, te compartimos dos archivos con el  detalle del resultado:",
-		BulkCreateErrorUsersCreatedSuccessfully: "✅ Usuarios creados correctamente:",
+		BulkCreateInfoSubject:                              "Información importante sobre la solicitud",
+		BulkCreateInfoSubjectOfUsers:                       "de creación de usuarios! ℹ️",
+		BulkCreateInfoTitle:                                "Información sobre tu solicitud de creación de usuarios",
+		BulkCreateInfoHeader:                               "Te informamos que el archivo",
+		BulkCreateInfoHeaderID:                             "con ID de solicitud",
+		BulkCreateInfoHeaderDetail:                         "fue recibido correctamente, procederemos a crear los usuarios.",
+		BulkCreateInfoBody:                                 "Una vez finalizada la creación de usuarios, te informaremos por correo.",
+		BulkCreateSuccessSubject:                           "Se han creado con éxito los usuarios solicitados! 🚀",
+		BulkCreateSuccessTitle:                             "Información sobre tu solicitud de creación de usuarios",
+		BulkCreateSuccessHeader:                            "Te informamos que al cargar el archivo",
+		BulkCreateSuccessHeaderDetail:                      "se crearon correctamente los",
+		BulkCreateSuccessHeaderDetailSystem:                "usuarios en el sistema.",
+		BulkCreateSuccessBody:                              "Puedes revisar y gestionar esta información directamente en la plataforma Falabella Business Center, sección Roles y Perfiles.",
+		BulkCreateSuccessFooter:                            "Si tienes alguna duda o necesitas apoyo adicional, no dudes en escribirnos.",
+		BulkCreateErrorSubject:                             "Estado de creación de usuarios en la plataformas FBC! 🚀",
+		BulkCreateErrorTitle:                               "Tenemos los resultados de tu solicitud de creación de usuarios.",
+		BulkCreateErrorHeader:                              "A continuación, te compartimos dos archivos con el  detalle del resultado:",
+		BulkCreateErrorUsersCreatedSuccessfully:            "✅ Usuarios creados correctamente:",
 		BulkCreateErrorUsersCreatedSuccessfullyDescription: "listado de los usuarios que fueron ingresados exitosamente al sistema.",
 		BulkCreateErrorUsersNotCreated:                     "⚠️ Usuarios no creados:",
 		BulkCreateErrorUsersNotCreatedDescription:          "listado de los usuarios que no  pudieron ser creados, junto con los errores detectados. Te pedimos por favor revisar estos casos, corregirlos y volver a enviar el archivo actualizado.",
+		Greetings:  "Saludos cordiales",
 		Filename:   "create_external_users_2023.csv",
 		TotalUsers: 100,
+		RequestID:  "1234567890",
 	})
 	if err != nil {
 		log.Fatal(err)
